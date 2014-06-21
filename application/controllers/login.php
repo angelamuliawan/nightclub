@@ -25,9 +25,22 @@ class Login extends CI_Controller {
 		$this->load->view('master/masterlayout', array('pageContent'=>$pageContent));
 	}
 	public function checkLogin(){
+		
 		$this->load->helper('url');
-		$this->session->sess_destroy();
-		redirect('home');
+		$this->load->helper('form');
+		
+		$this->load->model('homeModel');
+		$data = $this->input->post();		
+		$result = $this->homeModel->checkLogin($data['usernameLogin'], md5($data['passwordLogin']));
+
+		if($result !=0){
+			$this->session->set_userdata('loggedin',true);
+			$this->session->set_userdata('userid',$result[0]['staffid']);
+			
+			//superadmin akan diredirect ke hal manage admin
+			$this->output->set_output(1);
+		}
+		else echo $this->output->set_output(0);
 	}
 	public function checkLogout(){
 		$this->load->helper('url');

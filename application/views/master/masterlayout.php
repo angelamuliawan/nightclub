@@ -37,6 +37,9 @@
 							<li><a href="/nightclub/events">Events</a></li>
 							<li><a href="/nightclub/career">Career</a></li>
 							<li><a href="/nightclub/contacts">Contacts</a></li>
+							<?php if($this->session->userdata('userid') != NULL) {?>
+							<li><a href="/nightclub/login/checkLogout">Logout</a></li>
+							<?php } ?>
 						</ul>
 					</nav>
 					<h1><a href="index.html" id="logo">nightclub feel the rhythm</a></h1>

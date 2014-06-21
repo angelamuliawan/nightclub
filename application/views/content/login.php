@@ -4,6 +4,7 @@
         <div class="wrapper pad_bot1">
 			<section class="col1">
 				<h2 id="welcome">Admin Login!</h2>
+				<?php if($this->session->userdata('userid') == NULL) { ?>
 				<form id="ContactForm" action="#">
 				<div style="margin-left:auto; margin-right:auto;">
 					<div class="wrapper"> <span>Username:</span>
@@ -16,6 +17,10 @@
 					<label style="color:red" id="lblError"></label>
 				</div>
 				</form>
+				<?php } else { ?>
+				<h4>you're already loggedin</h4>
+				<a href="/nightclub/home">Home</a>
+				<?php } ?>
 			</section>
         </div>
     </article>
@@ -27,14 +32,17 @@
 			Cufon.now();
 			$('.box').hide().fadeIn();
 			 $("#lblError").text("");
-		$("#btnLogin").click(function(data){	
+		$("#Login").click(function(data){	
 			if($("#name").val() == '') $("#lblError").text("Username must be filled");
 			else if($("#password").val() == '') $("#lblError").text("Password must be filled");
 			else
 			{
 				$("#lblError").text("");
-				$.post(mainDomain+'/home/checkLogin', {usernameLogin:$("#name").val(), passwordLogin: $("#password").val()},function(data){
-					
+				$.post(mainDomain+'/login/checkLogin', {usernameLogin:$("#name").val(), passwordLogin: $("#password").val()},function(data){
+					if(data==1) {
+						window.location.href = mainDomain+'/home';
+					}
+					else $("#lblError").text("invalid username or password");
 				});
 			}
 	});

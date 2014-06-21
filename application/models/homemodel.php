@@ -15,5 +15,12 @@ class Homemodel extends CI_Model {
 		else
 		  	return 0;
 	}
-
+	function checkLogin($username, $password)
+	{
+		$query = $this->db->query("SELECT staffid, username, fullname from staff where username = '{$username}' AND password = '{$password}'");
+		if($this->db->affected_rows()>0)
+			return $query->result_array();
+		else
+		  	return 0;
+	}
 }
