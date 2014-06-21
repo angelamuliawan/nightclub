@@ -4,21 +4,6 @@
         <div class="wrapper">
 			<h2>Club Events</h2>
 			<div class="wrapper eventContent">
-				<!--<div class="cols marg_right1">
-					<figure class="pad_bot1">
-						<img src="/nightclub/assets/images/page4_img1.jpg" alt="">
-					</figure>
-					<p class="pad_bot2">
-						<span class="color2">
-							Lilly Watson
-						</span> 
-						<span class="color1">
-							Singer
-						</span>
-						<br>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore.
-					</p>
-				</div>-->
 			</div>
         </div>
     </article>

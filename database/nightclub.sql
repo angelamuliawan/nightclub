@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2014 at 05:13 AM
+-- Generation Time: Jun 21, 2014 at 10:11 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -50,7 +50,38 @@ CREATE TABLE IF NOT EXISTS `career` (
   `Contact` varchar(500) NOT NULL,
   `StaffID` int(11) NOT NULL,
   PRIMARY KEY (`CareerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `career`
+--
+
+INSERT INTO `career` (`CareerID`, `CareerPosition`, `Requirement`, `Contact`, `StaffID`) VALUES
+(1, 'Waitress', '- Pria / Wanita, usia 21 - 33 tahun.<br>- Pengalaman minimal 1 tahun di Club/Hotel<br>- Bersedia mengikuti training.<br>- Berpenampilan menarik dan kepribadian menarik.<br>- Ramah & Komunikatif.<br>- Rajin, jujur, dan disiplin.', 'email : admin@infinity.com<br>phone : 021 - 9876654', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE IF NOT EXISTS `contact` (
+  `ContactID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Subject` varchar(100) NOT NULL,
+  `Message` varchar(500) NOT NULL,
+  PRIMARY KEY (`ContactID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`ContactID`, `Name`, `Email`, `Subject`, `Message`) VALUES
+(1, 'Angela Muliawan', 'amuliawan93@gmail.com', 'Hai', 'Hallooooooooooooooooooooooooooooo'),
+(2, 'Angela Muliawan', 'amuliawan93@gmail.com', 'Hai', 'Hallooooooooooooooooooooooooooooo'),
+(3, 'Testing lagi ya', 'amuliawan93@gmail.com', 'Call me!', 'Hai');
 
 -- --------------------------------------------------------
 
@@ -63,12 +94,21 @@ CREATE TABLE IF NOT EXISTS `event` (
   `Title` varchar(50) NOT NULL,
   `Date` date NOT NULL,
   `Time` varchar(50) NOT NULL,
-  `Description` varchar(50) NOT NULL,
+  `Description` varchar(150) NOT NULL,
   `Place` varchar(50) NOT NULL,
   `ImageURL` varchar(50) NOT NULL,
   `StaffID` int(11) NOT NULL,
   PRIMARY KEY (`EventID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`EventID`, `Title`, `Date`, `Time`, `Description`, `Place`, `ImageURL`, `StaffID`) VALUES
+(3, 'Event Club 1', '2014-06-28', '10.00 pm - 05.00 am', 'Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fu', 'Club Infinity', 'event1.jpg', 1),
+(4, 'Event Club 2', '2014-07-05', '10.00 pm - 05.00 am', 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eve provident, similique sunt in culpa qui officia deserunt mollitia', 'Club Infinity', 'event2.jpg', 1),
+(5, 'Event Club 2', '2014-08-30', '10.00 pm - 05.00 am', 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eve provident, similique sunt in culpa qui officia deserunt molliti', 'Club Infinity', 'event3.jpg', 1);
 
 -- --------------------------------------------------------
 
