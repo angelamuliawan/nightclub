@@ -49,11 +49,11 @@
 								<div class="icons">
 									<h4>Connect With Us</h4>
 									<ul id="icons">
-										<li><a href="#" class="normaltip"><img src="images/icon1.jpg" alt=""></a></li>
-										<li><a href="#" class="normaltip"><img src="images/icon2.jpg" alt=""></a></li>
-										<li><a href="#" class="normaltip"><img src="images/icon3.jpg" alt=""></a></li>
-										<li><a href="#" class="normaltip"><img src="images/icon4.jpg" alt=""></a></li>
-										<li><a href="#" class="normaltip"><img src="images/icon5.jpg" alt=""></a></li>
+										<li><a href="#" class="normaltip"><img src="/nightclub/assets/images/icon1.jpg" alt=""></a></li>
+										<li><a href="#" class="normaltip"><img src="/nightclub/assets/images/icon2.jpg" alt=""></a></li>
+										<li><a href="#" class="normaltip"><img src="/nightclub/assets/images/icon3.jpg" alt=""></a></li>
+										<li><a href="#" class="normaltip"><img src="/nightclub/assets/images/icon4.jpg" alt=""></a></li>
+										<li><a href="#" class="normaltip"><img src="/nightclub/assets/images/icon5.jpg" alt=""></a></li>
 									</ul>
 								<!-- {%FOOTER_LINK} -->
 								</div>
@@ -79,7 +79,7 @@
 									<p>Free Phone<span>8-800-123-NIGHT</span></p>
 								</div>
 							</div>
-					  Copyright &copy; <a href="#">Domain Name</a> All Rights Reserved | Design by <a target="_blank" href="http://www.templatemonster.com/">TemplateMonster.com</a></div>
+					  Copyright &copy; <a href="#">Mira Night Club &copy; 2014</a></div>
 				</footer>
 				<!--footer end-->
 			</div>
