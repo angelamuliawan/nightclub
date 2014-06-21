@@ -25,34 +25,11 @@ class Home extends CI_Controller {
 		$this->load->view('master/masterlayout', array('pageContent'=>$pageContent));
 	}
 
-	public function checkLogin()
-	{
-		$this->load->model('homemodel');
-		$data = $this->input->post();
-		
-		$result = $this->homemodel->checkLogin($data['username'],$data['password']);
-		
-		if($result != 0)
-		{
-			$this->session->set_userdata('loggedin',TRUE);
-			$this->session->set_userdata('UserID',$result[0]['UserID']);
-			$this->session->set_userdata('UserName',$result[0]['UserName']);
-			$this->session->set_userdata('UserStatus',$result[0]['UserStatus']);
+	public function getUpcomingEvents(){
+		$this->load->model('homeModel');
+		$result = $this->homeModel->getUpcomingEvents();
 
-			redirect('home');
-		}
-		else 
-		{
-			//$this->output->set_output("login salah");
-			//redirect('home');
-		}
-	}
-
-	public function Logout()
-	{
-		$this->load->helper('url','form');
-		$this->session->sess_destroy();
-		redirect('home');
+		$this->output->set_output(json_encode($result));
 	}
 }
 

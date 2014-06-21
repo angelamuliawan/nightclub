@@ -6,65 +6,52 @@
 				<h2 id="welcom">Hello!</h2>
 				<p class="color1">Night Club is one of free website templates created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. It is also XHTML &amp; CSS valid.</p>
 				<p class="pad_bot1">This Night Club Template goes with two packages – with PSD source files and without them. PSD source files are available for free for the registered members of Templates.com. The basic package (without PSD source) is available for anyone without registration.</p>
-				<a href="#" class="link1">Read More</a> 
 			</section>
 			
 			<section class="col1 pad_left1">
-            <h2>Latest Events</h2>
+            <h2>Upcoming Events</h2>
             <div id="gallery1">
-				<ul>
+				<!--<ul>
 					<li> 
 						<span class="dropcap_1">30<span>august</span></span>
 						<p><span class="color1">Lorem ipsum dolor sit amet</span><br>
 						adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
 						<a href="#" class="link1">View Details</a></p>
 					</li>
-					<li> 
-						<span class="dropcap_1">26<span>august</span></span>
-						<p><span class="color1">Ut enim ad minim veniam nostrud</span><br>
-						Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-						<a href="#" class="link1">View Details</a></p>
-					</li>
-				</ul>
+				</ul>-->
             </div>
-            <a href="#" class="next"></a> <a href="#" class="prev"></a> </section>
-        </div>
-        <div class="wrapper">
-			<h2>Next Party</h2>
-			<div class="wrapper">
-				<figure class="left marg_right1"><a href="#"><img src="images/banner1.jpg" alt=""></a></figure>
-				<h3>Best RNB from Europe</h3>
-				<p class="pad_bot1">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo:</p>
-			
-				<ul class="list1 pad_bot1">
-					<li><a href="#">Ut enim ad minima veniam, quis nostrum exercitationem ullam</a></li>
-					<li><a href="#">Quis autem vel eum iure reprehenderit qui in voluptate</a></li>
-					<li><a href="#">Velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum</a></li>
-					<li><a href="#">Fugiat quo voluptas nulla pariatur lorem ipsum dolor sit amet</a></li>
-				</ul>
-				
-				<p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate voluptatem quia voluptas sit aspernatur.</p>
-			</div>
         </div>
     </article>
     <!--content end-->
 	
-	<script type="text/javscript">
+	<script type="text/javascript">
 		$(document).ready(function () {
-			//gallery
-			$("#gallery1").jCarouselLite({
-				btnNext: ".next",
-				btnPrev: ".prev",
-				mouseWheel: true,
-				vertical: true,
-				circular: true,
-				visible: 2,
-				speed: 600,
-				easing: 'easeOutCirc'
+			$.ajax({
+				  type: 'POST',
+				  url: mainDomain + '/home/getUpcomingEvents',	
+				  data:{},
+				  success: function(data)
+				  {
+				  	//console.log(data);
+				  	var data= JSON.parse(data);
+				  	var day, month;
+				  	for(var i = 0; i<data.length; i++)
+				  	{
+				  		day = data[i]['Date1'].split(' ');
+				  		$("#gallery1").append(
+							'<ul>'+
+								'<li>'+
+									'<span class="dropcap_1">'+day[0]+'<span>'+day[1]+'</span></span>'+
+									'<p><span class="color1">'+data[i]['title']+'</span><br>'+
+									data[i]['Description']+'<br>'+
+								'</li>'+
+							'</ul>');
+				  	}
+				  },
+				 async:true
 			});
 			Cufon.now();
-		})
-
 		$('li.active').removeClass('active');
 		$("a[href='/nightclub/home']").parent().addClass('active');
+	})
 	</script>

@@ -18,11 +18,16 @@ class Events extends CI_Controller {
 			3. TRUE
 
 		*/
-			
 		$pageContent = $this->load->view('content/events', '' , TRUE);
 
 		//Load Master View, put $pageContent inside
 		$this->load->view('master/masterlayout', array('pageContent'=>$pageContent));
+	}
+	public function getEvents(){
+		$this->load->model('eventsModel');
+		$result = $this->eventsModel->getEvents();
+
+		$this->output->set_output(json_encode($result));
 	}
 }
 

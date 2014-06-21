@@ -18,11 +18,17 @@ class Contacts extends CI_Controller {
 			3. TRUE
 
 		*/
-			
 		$pageContent = $this->load->view('content/contacts', '' , TRUE);
 
 		//Load Master View, put $pageContent inside
 		$this->load->view('master/masterlayout', array('pageContent'=>$pageContent));
+	}
+	public function insertContactUs()
+	{
+		$this->load->model('contactsmodel');
+		$data = $this->input->post();		
+		$result = $this->contactsmodel->insertContactUs($data['name'], $data['email'], $data['subject'], $data['message']);
+		$this->output->set_output( json_encode($result));
 	}
 }
 

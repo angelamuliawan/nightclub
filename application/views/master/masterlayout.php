@@ -18,6 +18,11 @@
 		<script src="/nightclub/assets/js/jquery.easing.1.3.js"></script>
 		<script src="/nightclub/assets/js/jquery.mousewheel.js"></script>
 		<script src="/nightclub/assets/js/atooltip.jquery.js"></script>
+
+		<script type="text/javascript">
+			var mainDomain= "http://localhost:8088/nightclub";
+			var serverTime = '<?=date('H:i:s');?>';
+		</script>
 	</head>
 
 	<body id="page1">
@@ -79,7 +84,7 @@
 									<p>Free Phone<span>8-800-123-NIGHT</span></p>
 								</div>
 							</div>
-					  Copyright &copy; <a href="#">Mira Night Club &copy; 2014</a></div>
+					  Copyright &copy; <a href="#">Infinity Night Club - UI template helped by TemplateMonster.com &copy; 2014</a></div>
 				</footer>
 				<!--footer end-->
 			</div>

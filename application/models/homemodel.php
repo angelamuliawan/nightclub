@@ -7,16 +7,13 @@ class Homemodel extends CI_Model {
 		// Call the Model constructor
 		parent::__construct();
 	}
-	
-	function checkLogin($username, $password)
+	function getUpcomingEvents()
 	{
-		$this->db->select('UserID,UserName,Password, UserStatus');
-		$this->db->where("Username = '$username' AND Password = '$password'");
-		$query = $this->db->get('msuser');
-
+		$query = $this->db->query("SELECT eventid, title, DATE_FORMAT( Date, '%d %M %Y' ) AS Date1, Time, Description, Place, ImageURL from event order by Date limit 2");
 		if($this->db->affected_rows()>0)
 			return $query->result_array();
 		else
 		  	return 0;
 	}
+
 }

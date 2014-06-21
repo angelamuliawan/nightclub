@@ -5,18 +5,19 @@
 			<form id="ContactForm" action="#">
 				<div>
 					<div class="wrapper"> <span>Name:</span>
-						<input type="text" class="input" >
+						<input type="text" class="input" id="name" placeholder="Input Your Name"/>
 					</div>
 					<div class="wrapper"> <span>Email:</span>
-						<input type="text" class="input" >
+						<input type="text" class="input"  id="email" placeholder="Input Your Email"/>
 					</div>
 					<div class="wrapper"> <span>Subject:</span>
-						<input type="text" class="input" >
+						<input type="text" class="input"  id="subject" placeholder="Input Your Subject"/>
 					</div>
 					<div class="textarea_box"> <span>Message:</span>
-						<textarea name="textarea" cols="1" rows="1"></textarea>
+						<textarea name="textarea" cols="1" rows="1" id="message" placeholder="Input Your Message"></textarea>
 					</div>
-					<a href="#" class="button">send</a> <a href="#" class="button">clear</a>
+					<input type="button" class="button" value="Send" id="btnSend"/>
+					<label style="color:red" id="lblError"></label>
 				</div>
 			</form>
         </div>
@@ -36,19 +37,44 @@
 					<a href="#" class="link2">mail@demolink.org</a>
 				</p>
 			</div>
-			<div class="col2 pad_left1">
-				<h2>Miscellaneous Info</h2>
-				<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque.</p>
-			</div>
         </div>
     </article>
     <!--content end-->
 
     <script type="text/javascript">
 	$(document).ready(function () {
-
+		$("#lblError").text("");
 		$('li.active').removeClass('active');
 		$("a[href='/nightclub/contacts']").parent().addClass('active');
 
+		$("#btnSend").click(function(){
+			var name = $("#name").val();
+			var email = $("#email").val();
+			var subject = $("#subject").val();
+			var message = $("#message").val();
+
+			if(name == '') $("#lblError").empty().text("Name must be filled");
+			else if(email == '') $("#lblError").empty().text("email must be filled");
+			else if(subject == '') $("#lblError").empty().text("subject must be filled");
+			else if(message == '') $("#lblError").empty().text("message must be filled");
+			else{
+				$.ajax({
+				  type: 'POST',
+				  url: mainDomain + '/contacts/insertContactUs',	
+				  data:{name:name, email:email, subject:subject, message:message},
+				  success: function(data)
+				  {
+				  	var data= JSON.parse(data);
+				  	if(data == 1) 
+			  		{
+			  			alert("Data successfuly save");
+			  			window.location.href = mainDomain +'/home';
+			  		}
+			  		else $("#lblError").empty().text("sorry we're unable to save your data");
+				  },
+				 async:true
+			});
+			}
+		});
 	});
 	</script>
