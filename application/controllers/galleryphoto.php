@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Gallery extends CI_Controller {
+class GalleryPhoto extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->helper('form');
 	}
 	
-	public function index()
+	public function index($param = 0)
 	{
 		//content
 		// REMEMBER !!!!, $this->load->view() CONSIST BY 3 PARAMETER, 
@@ -18,23 +18,17 @@ class Gallery extends CI_Controller {
 			3. TRUE
 
 		*/
-
-		$pageContent = $this->load->view('content/gallery', '' , TRUE);
+		
+		$data = array('param' => $param);
+		$pageContent = $this->load->view('content/galleryphoto', $data , TRUE);
 
 		//Load Master View, put $pageContent inside
 		$this->load->view('master/masterlayout', array('pageContent'=>$pageContent));
 	}
 	
-	public function getAlbums(){
+	public function getImage(){
 		$this->load->model('galleryModel');
-		$result = $this->galleryModel->getAlbums();
-
-		$this->output->set_output(json_encode($result));
-	}
-	
-	public function getImageInsideAlbum(){
-		$this->load->model('galleryModel');
-		$result = $this->galleryModel->getImageInsideAlbum();
+		$result = $this->galleryModel->getImage();
 
 		$this->output->set_output(json_encode($result));
 	}

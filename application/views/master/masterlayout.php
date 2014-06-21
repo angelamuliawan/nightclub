@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="/nightclub/assets/css/style.css" type="text/css" media="all">
 		
 		<!-- include all JS -->
-		<script src="/nightclub/assets/js/jquery-1.6.js" ></script>
+		<script type="text/javascript" src="/nightclub/assets/js/pirobox/jquery1.2.6.js"></script>
 		<script src="/nightclub/assets/js/cufon-yui.js"></script>
 		<script src="/nightclub/assets/js/cufon-replace.js"></script>
 		<script src="/nightclub/assets/js/NewsGoth_BT_400.font.js"></script>

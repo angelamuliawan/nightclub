@@ -1,70 +1,144 @@
 
     <!--content -->
     <article id="content">
-        <div class="wrapper">
-			<h2>Rnb Party Gallery</h2>
-			<dl class="folio">
-				<dt> 
-					<img src="/nightclub/assets/images/gallery_big_img1.jpg" alt="" id="img1"> 
-					<img src="/nightclub/assets/images/gallery_big_img2.jpg" alt="" id="img2"> 
-					<img src="/nightclub/assets/images/gallery_big_img3.jpg" alt=""  class="active" id="img3"> 
-					<img src="/nightclub/assets/images/gallery_big_img4.jpg" alt="" id="img4">
-					<img src="/nightclub/assets/images/gallery_big_img5.jpg" alt="" id="img5"> 
-					<img src="/nightclub/assets/images/gallery_big_img6.jpg" alt="" id="img6"> 
-					<img src="/nightclub/assets/images/gallery_big_img7.jpg" alt="" id="img7"> 
-					<img src="/nightclub/assets/images/gallery_big_img8.jpg" alt="" id="img8"> 
-					<img src="/nightclub/assets/images/gallery_big_img9.jpg" alt="" id="img9"> 
-				</dt>
-				<dd>
-					<ul class="marg_right1">
-						<li><a href="#img1"><img src="/nightclub/assets/images/gallery_img1.jpg" alt="" width="260" height="171"></a></li>
-						<li><a href="#img2"><img src="/nightclub/assets/images/gallery_img2.jpg" alt="" width="260" height="171"></a></li>
-						<li><a href="#img3"><img src="/nightclub/assets/images/gallery_img3.jpg" alt="" width="260" height="171"></a></li>
-					</ul>
-					<ul class="marg_right1">
-						<li><a href="#img4"><img src="/nightclub/assets/images/gallery_img4.jpg" alt="" width="260" height="171"></a></li>
-						<li><a href="#img5"><img src="/nightclub/assets/images/gallery_img5.jpg" alt="" width="260" height="171"></a></li>
-						<li><a href="#img6"><img src="/nightclub/assets/images/gallery_img6.jpg" alt="" width="260" height="171"></a></li>
-					</ul>
-					<ul>
-						<li><a href="#img7"><img src="/nightclub/assets/images/gallery_img7.jpg" alt="" width="260" height="171"></a></li>
-						<li><a href="#img8"><img src="/nightclub/assets/images/gallery_img8.jpg" alt="" width="260" height="171"></a></li>
-						<li><a href="#img9"><img src="/nightclub/assets/images/gallery_img9.jpg" alt="" width="260" height="171"></a></li>
-					</ul>
-				</dd>
-			</dl>
+        <div class="wrapper gallery_in">
+			<h2>Albums</h2>
+			<div class="wrapper galleryContent">
+			</div>
         </div>
     </article>
     <!--content end-->
-	  
+	
+	<link href="/nightclub/assets/css/pirobox/pirobox.css" media="screen" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/nightclub/assets/js/pirobox/piroBox.js"></script>
+	
 	<script type="text/javascript">
-	$(document).ready(function () {
+		$(document).ready(function(){
+			
+			$('li.active').removeClass('active');
+			$("a[href='/nightclub/gallery']").parent().addClass('active');
 
-		$('li.active').removeClass('active');
-		$("a[href='/nightclub/gallery']").parent().addClass('active');
+			Cufon.now();
+			$.ajax({
+				type: 'POST',
+				url: mainDomain + '/gallery/getAlbums',	
+				data:{},
+				success: function(data)
+				{
+					//console.log(data);
+					var data = JSON.parse(data);
+					if(!data.length){
+						$('#photoContent').append('<h4>Sorry, no album available.</h4>');
+					}else{
+						for(var i = 0; i < data.length; i++)
+						{
+							$.ajax({
+								type: 'POST',
+								url: mainDomain + '/gallery/getImageInsideAlbum',	
+								data: { albumid : data[i]['AlbumID'] },
+								success: function(jsonimage)
+								{
+									var dataimage = JSON.parse(jsonimage);
+									if(dataimage == 0){
+										if((i+1) % 3 == 0)
+										{
+											$('.galleryContent').append('<div class="cols" id="'+data[i]['AlbumID']+'">'+
+												'<figure class="pad_bot1">'+
+													'<a href="/nightclub/galleryphoto/index/'+data[i]['AlbumID']+'"><img src="/nightclub/assets/images/gallery/nophotoavailable.jpg" width="210" height="159" alt=""></a>'+
+												'</figure>'+
+												'<p class="pad_bot2">'+
+													'<span class="color2">'+
+														data[i]['Date']+
+													'</span> '+
+													'<br>'+
+													data[i]['AlbumDescription']+
+												'</p>'+
+											'</div>');
+										}
+										else
+										{
+											$('.galleryContent').append('<div class="cols marg_right1" id="'+data[i]['AlbumID']+'">'+
+												'<figure class="pad_bot1">'+
+													'<a href="/nightclub/galleryphoto/index/'+data[i]['AlbumID']+'"><img src="/nightclub/assets/images/gallery/nophotoavailable.jpg" width="210" height="159" alt=""></a>'+
+												'</figure>'+
+												'<p class="pad_bot2">'+
+													'<span class="color2">'+
+														data[i]['Date']+
+													'</span> '+
+													'<br>'+
+													data[i]['AlbumDescription']+
+												'</p>'+
+											'</div>');	
+										}
+									}else{
+										if((i+1) % 3 == 0)
+										{
+											$('.galleryContent').append('<div class="cols" id="'+data[i]['AlbumID']+'">'+
+												'<figure class="pad_bot1">'+
+													'<a href="/nightclub/galleryphoto/index/'+data[i]['AlbumID']+'"><img src="/nightclub/assets/images/gallery/'+dataimage[0]['PhotoURL']+'" width="210" height="159" alt=""></a>'+
+												'</figure>'+
+												'<p class="pad_bot2">'+
+													'<span class="color2">'+
+														data[i]['Date']+
+													'</span> '+
+													'<br>'+
+													data[i]['AlbumDescription']+
+												'</p>'+
+											'</div>');
+										}
+										else
+										{
+											$('.galleryContent').append('<div class="cols marg_right1" id="'+data[i]['AlbumID']+'">'+
+												'<figure class="pad_bot1">'+
+													'<a href="/nightclub/galleryphoto/index/'+data[i]['AlbumID']+'"><img src="/nightclub/assets/images/gallery/'+dataimage[0]['PhotoURL']+'" width="210" height="159" alt=""></a>'+
+												'</figure>'+
+												'<p class="pad_bot2">'+
+													'<span class="color2">'+
+														data[i]['Date']+
+													'</span> '+
+													'<br>'+
+													data[i]['AlbumDescription']+
+												'</p>'+
+											'</div>');	
+										}
+									}
+									
+								},
+								async:false
+							});
+						}
+					}
+				},
+				async:false
+			});
 
-		Cufon.now();
-		var Img = '#' + $(".folio .active").attr('id')
-		$(".folio dt img").css({
-			opacity: '0'
+			$('.thumbs').piroBox({
+					border: 10,
+					borderColor : '#222', 
+					mySpeed: 700,  
+					bg_alpha: 0.3,
+					cap_op_start : 0.4,
+					cap_op_end: 0.8,
+					pathLoader : '#000 url("/nightclub/assets/images/pirobox/ajax-loader.gif") center center no-repeat;', 
+					gallery : '.gallery_in li a', 
+					gallery_li : '.gallery_in li', 
+					next_class : '.next_in',
+					previous_class : '.previous_in'
+			});	
+			
+			$('.thumbs').piroBox({
+					border: 1, 
+					mySpeed: 700,
+					borderColor : '#444',  
+					bg_alpha: 0.5,
+					cap_op_start : 0.4,
+					cap_op_end: 0.8,
+					pathLoader : '#000 url("/nightclub/assets/images/pirobox/ajax-loader.gif") center center no-repeat;', 
+					gallery : '.gallery li a', 
+					gallery_li : '.gallery li',
+					single : '.single  a',
+					next_class : '.next',
+					previous_class : '.previous'
+			});	
 		});
-		$(".folio dt img.active").css({
-			opacity: '1'
-		});
-		$(".folio ul li a").click(function () {
-			var ImgId = $(this).attr("href");
-			if (ImgId != Img) {
-				$(".folio dt .active").animate({
-					opacity: "0"
-				}, 600, function () {
-					$(this).removeClass('active');
-				})
-				$(ImgId).animate({
-					opacity: "1"
-				}, 600).addClass('active');
-			}
-			Img = ImgId;
-			return false;
-		})
-	});
 	</script>
