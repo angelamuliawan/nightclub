@@ -1,9 +1,33 @@
 	<!--content -->
 	<script>
 	function loadContactUs(){
-		
+		$.ajax({
+			  type: 'POST',
+			  url: mainDomain + '/contacts/getMessage',	
+			  data:{},
+			  success: function(data)
+			  {
+
+			  	console.log(data);
+			  	var data= JSON.parse(data);
+			  	for(var i =0; i<data.length; i++)
+			  	{
+			  		$('#tblContactUs').append(
+					'<tr><td style="width:15%;">'+data[i]['name']+'</td>'+
+					'<td style="width:15%;">'+data[i]['email']+'</td>'+
+					'<td style="width:15%;">'+data[i]['subject']+'</td>'+
+					'<td style="width:45%;">'+data[i]['message']+'</td>'+
+					'<td style="width:10%;"><a href="'+mainDomain+'/contacts/deleteMessage/'+data[i]['contactid']+'">Delete</a></td></tr>');
+			  	}
+			  },
+			 async:true
+		});
 	}
 	</script>
+	<style type="text/css">
+		table { border-collapse:collapse; }
+		table td, table th { border:1px solid grey;padding:5px; }
+	</style>
 
     <article id="content">
         <div class="wrapper">
@@ -28,7 +52,8 @@
 				</div>
 			</form>
 			<?php } else { ?>
-				<table border="1" style="width:100%;border: 1px solid #eeeeee;">
+			<h2>Manage Messages</h2>
+				<table style="width:100%;">
 				<thead>
 					<tr>
 					<th style="width:15%;">Name</th>
@@ -39,11 +64,6 @@
 					</tr>
 				</thead>
 				<tbody id="tblContactUs">
-					<td style="width:15%;">aa</td>
-					<td style="width:15%;">aa@aa.com</td>
-					<td style="width:15%;">aa s</td>
-					<td style="width:45%;">aa m</td>
-					<td style="width:10%;"><a href="#">Delete</a></td>
 				</tbody>
 				</table>
 
