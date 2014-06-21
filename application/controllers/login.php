@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Career extends CI_Controller {
+class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
@@ -19,15 +19,20 @@ class Career extends CI_Controller {
 
 		*/
 			
-		$pageContent = $this->load->view('content/career', '' , TRUE);
+		$pageContent = $this->load->view('content/login', '' , TRUE);
 
 		//Load Master View, put $pageContent inside
 		$this->load->view('master/masterlayout', array('pageContent'=>$pageContent));
 	}
-	public function getCareer(){
-		$this->load->model('careerModel');
-		$result = $this->careerModel->getCareer();
-		$this->output->set_output(json_encode($result));
+	public function checkLogin(){
+		$this->load->helper('url');
+		$this->session->sess_destroy();
+		redirect('home');
+	}
+	public function checkLogout(){
+		$this->load->helper('url');
+		$this->session->sess_destroy();
+		redirect('home');
 	}
 }
 

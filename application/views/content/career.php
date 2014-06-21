@@ -1,28 +1,7 @@
 
     <!--content -->
     <article id="content">
-        <div class="wrapper">
-			<h2><strong>02.09.</strong> Sed ut perspiciatis unde omnis iste natus</h2>
-			<div class="wrapper pad_bot1">
-				<figure class="left marg_right1"><img src="/nightclub/assets/images/page5_img1.jpg" alt=""></figure>
-				<p class="color1 pad_bot1">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.</p>
-				<p class="pad_bot1">Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerufacilis est et expedita distinctio. Nam libero tepre cum soluta nobis est eligendi.</p>
-				<a href="#" class="link2">Read More</a> 
-			</div>
-			<h2><strong>29.08.</strong> Error sit voluptatem accusantium</h2>
-			<div class="wrapper pad_bot1">
-				<figure class="left marg_right1"><img src="/nightclub/assets/images/page5_img2.jpg" alt=""></figure>
-				<p class="color1 pad_bot1">Molestias excepturi sint occaecati cupiditate non facere possimus, omnis voluptas assum enda est, omnis dolor repellendus.</p>
-				<p class="pad_bot1">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eve provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga est et expedita distinctio cum soluta nobis eligendi.</p>
-				<a href="#" class="link2">Read More</a> 
-			</div>
-			<h2><strong>22.08.</strong> Nemo enim ipsam voluptatem quia voluptas</h2>
-			<div class="wrapper">
-				<figure class="left marg_right1"><img src="/nightclub/assets/images/page5_img3.jpg" alt=""></figure>
-				<p class="color1 pad_bot1">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.</p>
-				<p class="pad_bot1">Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerufacilis est et expedita distinctio. Nam libero tepre cum soluta nobis est eligendi.</p>
-				<a href="#" class="link2">Read More</a> 
-			</div>
+        <div class="wrapper careercontent">
         </div>
     </article>
 
@@ -32,6 +11,28 @@
 
 		$('li.active').removeClass('active');
 		$("a[href='/nightclub/career']").parent().addClass('active');
+
+		$.ajax({
+			  type: 'POST',
+			  url: mainDomain + '/career/getCareer',	
+			  data:{},
+			  success: function(data)
+			  {
+
+			  	//console.log(data);
+			  	var data= JSON.parse(data);
+			  	for(var i =0; i<data.length; i++)
+			  	{
+			  		$('.careercontent').append(
+			  		'<h2><strong>Urgently Needed.</strong> '+data[i]['CareerPosition']+'</h2>'+
+					'<div class="wrapper">'+
+						'<p class="color1 pad_bot1">'+data[i]['Requirement']+'</p>'+
+						'<p class="pad_bot1">'+data[i]['Contact']+'</p>'+
+					'</div>');
+			  	}
+			  },
+			 async:true
+		});
 
 	});
 	</script>
