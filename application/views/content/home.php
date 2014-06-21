@@ -4,8 +4,8 @@
         <div class="wrapper pad_bot1">
 			<section class="col1">
 				<h2 id="welcom">Hello!</h2>
-				<p class="color1">the description here</p>
-				<p class="pad_bot1">blablabla here</p>
+				<p class="color1">this is infinity production</p>
+				<p class="pad_bot1">Part of Jakartalive-entertainment group event & Party organizer dedicated in nightlife entertaiment-Dj Label</p>
 			</section>
 			
 			<section class="col1 pad_left1">

@@ -1,6 +1,7 @@
 
     <!--content -->
     <article id="content">
+    	<a href="">Add New Career</a>
         <div class="wrapper careercontent">
         </div>
     </article>
@@ -24,15 +25,20 @@
 			  	for(var i =0; i<data.length; i++)
 			  	{
 			  		$('.careercontent').append(
-			  		'<h2><strong>Urgently Needed.</strong> '+data[i]['CareerPosition']+'</h2>'+
+			  		'<h2 class="title"><strong>Urgently Needed.</strong> '+data[i]['CareerPosition']+'</h2>'+
 					'<div class="wrapper">'+
-						'<p class="color1 pad_bot1">'+data[i]['Requirement']+'</p>'+
-						'<p class="pad_bot1">'+data[i]['Contact']+'</p>'+
+						'<p class="color1 pad_bot1 requirement">'+data[i]['Requirement']+'</p>'+
+						'<p class="pad_bot1 contact">'+data[i]['Contact']+'</p>'+
+
+			  		'<a style="cursor:pointer;" class="btnEdit">Edit</a> &nbsp; <a class="btnDelete" style="cursor:pointer;">Delete</a>'+
 					'</div>');
 			  	}
 			  },
 			 async:true
 		});
-
+		
+		$('body').on('click', '.btnEdit', function(){
+			alert("aa");
+		})
 	});
 	</script>

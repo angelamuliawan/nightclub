@@ -1,6 +1,13 @@
 	<!--content -->
+	<script>
+	function loadContactUs(){
+		
+	}
+	</script>
+
     <article id="content">
         <div class="wrapper">
+        	<?php if($this->session->userdata('userid') == NULL) {?>
 			<h2>Contact Form</h2>
 			<form id="ContactForm" action="#">
 				<div>
@@ -20,11 +27,35 @@
 					<label style="color:red" id="lblError"></label>
 				</div>
 			</form>
+			<?php } else { ?>
+				<table border="1" style="width:100%;border: 1px solid #eeeeee;">
+				<thead>
+					<tr>
+					<th style="width:15%;">Name</th>
+					<th style="width:15%;">Email</th>
+					<th style="width:15%;">Subject</th>
+					<th style="width:45%;">Message</th>
+					<th style="width:10%;">Action</th>
+					</tr>
+				</thead>
+				<tbody id="tblContactUs">
+					<td style="width:15%;">aa</td>
+					<td style="width:15%;">aa@aa.com</td>
+					<td style="width:15%;">aa s</td>
+					<td style="width:45%;">aa m</td>
+					<td style="width:10%;"><a href="#">Delete</a></td>
+				</tbody>
+				</table>
+
+				<script>
+					loadContactUs();
+				</script>
+			<?php } ?>
         </div>
 		
         <div class="wrapper">
 			<div class="col1">
-				<h2>Contact Form</h2>
+				<h2>Contact Us</h2>
 					<p class="color1 pad_bot1">Jl bunga lily 5, persangrahan,bintaro, jakarta selatan, Jakarta, Indonesia 12330</p>
 					<p class="address">Handphone:<br>
 					  email:<br>
@@ -77,4 +108,5 @@
 			}
 		});
 	});
+
 	</script>
