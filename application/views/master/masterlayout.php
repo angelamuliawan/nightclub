@@ -20,7 +20,7 @@
 		<script src="/nightclub/assets/js/atooltip.jquery.js"></script>
 
 		<script type="text/javascript">
-			var mainDomain= "http://localhost:8088/nightclub";
+			var mainDomain= "http://localhost:2812/nightclub";
 			var serverTime = '<?=date('H:i:s');?>';
 		</script>
 	</head>
@@ -42,17 +42,19 @@
 							<?php } ?>
 						</ul>
 					</nav>
-					<h1><a href="index.html" id="logo">nightclub feel the rhythm</a></h1>
+					<!--<h1><a href="index.html" id="logo">nightclub feel the rhythm</a></h1>-->
+					<img src="/nightclub/assets/images/logobaru.png" style="margin-top:10px;"/> </header> 
+					<!--content -->
 				</header>
 				
 				<!--content -->
-				<div class="box">
+				<div class="box" style="margin-top:-40px;">
 					<?php echo isset($pageContent) ? $pageContent : '' ; ?>
 				</div>
 				
 				<!--footer -->
 				<footer>
-					  Copyright &copy; <a href="#">Infinity Night Club - UI template helped by TemplateMonster.com &copy; 2014</a></div>
+					  <strong>Copyright &copy; <a href="#">Infinity Production - UI template helped by TemplateMonster.com &copy; 2014</a></div></strong>
 				</footer>
 				<!--footer end-->
 			</div>

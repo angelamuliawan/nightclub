@@ -25,16 +25,16 @@
         <div class="wrapper">
 			<div class="col1">
 				<h2>Contact Form</h2>
-					<p class="color1 pad_bot1">8901 Marmora, Glasgow, D04 89GR</p>
-					<p class="address">Freephone:<br>
-					  Telephone:<br>
-					  FAX:<br>
-					  E-mail:
+					<p class="color1 pad_bot1">Jl bunga lily 5, persangrahan,bintaro, jakarta selatan, Jakarta, Indonesia 12330</p>
+					<p class="address">Handphone:<br>
+					  email:<br>
+					  pin BB:<br>
+					  twitter:
 					</p>
-					<p>+1 800 559 6580<br>
-					+1 959 603 6035<br>
-					+1 504 889 9898<br>
-					<a href="#" class="link2">mail@demolink.org</a>
+					<p>0813-7696-2266<br>
+					 infinity.eproduction@yahoo.com <br>
+					 26C9CF54 <br>
+					@infinity_prod
 				</p>
 			</div>
         </div>
