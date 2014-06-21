@@ -43,3 +43,12 @@
         </div>
     </article>
     <!--content end-->
+
+    <script type="text/javascript">
+	$(document).ready(function () {
+
+		$('li.active').removeClass('active');
+		$("a[href='/nightclub/contacts']").parent().addClass('active');
+
+	});
+	</script>

@@ -27,3 +27,11 @@
     </article>
 
 	<script type="text/javascript">Cufon.now();</script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+
+		$('li.active').removeClass('active');
+		$("a[href='/nightclub/career']").parent().addClass('active');
+
+	});
+	</script>

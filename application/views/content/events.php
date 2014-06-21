@@ -34,3 +34,11 @@
     <!--content end-->
 	
 	<script type="text/javascript">Cufon.now();</script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+
+		$('li.active').removeClass('active');
+		$("a[href='/nightclub/events']").parent().addClass('active');
+
+	});
+	</script>

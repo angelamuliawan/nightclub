@@ -64,4 +64,7 @@
 			});
 			Cufon.now();
 		})
+
+		$('li.active').removeClass('active');
+		$("a[href='/nightclub/home']").parent().addClass('active');
 	</script>
