@@ -37,7 +37,7 @@
 		  	{
 		  		if((i+1) % 3 == 0)
 		  		{
-		  		$('.eventContent').append('<div class="cols" id="'+data[i]['eventid']+'">'+
+		  		$('.eventContent').append('<div class="cols eventss" id="'+data[i]['eventid']+'">'+
 		  		'<h4>'+data[i]['title']+'</h4>'+
 					'<figure class="pad_bot1">'+
 						'<img src="/nightclub/assets/images/event/'+data[i]['ImageURL']+'" alt="">'+
@@ -53,7 +53,7 @@
 		  		}
 		  		else
 		  		{
-				$('.eventContent').append('<div class="cols marg_right1" id="'+data[i]['eventid']+'">'+
+				$('.eventContent').append('<div class="cols marg_right1 eventss" id="'+data[i]['eventid']+'">'+
 		  		'<h4>'+data[i]['title']+'</h4>'+
 					'<figure class="pad_bot1">'+
 						'<img src="/nightclub/assets/images/event/'+data[i]['ImageURL']+'" alt="">'+
@@ -67,7 +67,7 @@
 					'</p>'+
 				'</div>');	
 		  		}
-		  		if($("#staffid").val() != "") $('.eventContent').append('<a style="cursor:pointer;" class="btnEdit">Edit</a> &nbsp; <a class="btnDelete" href="'+mainDomain+'/event/deleteEvent/'+data[i]['eventid']+'" style="cursor:pointer;">Delete</a>');
+		  		if($("#staffid").val() != "") $('.eventss:last').append('<a style="cursor:pointer;" class="btnEdit">Edit</a> &nbsp; <a class="btnDelete" href="'+mainDomain+'/events/deleteEvent/'+data[i]['eventid']+'" style="cursor:pointer;">Delete</a>');
 		  	}
 		  },
 		 async:true

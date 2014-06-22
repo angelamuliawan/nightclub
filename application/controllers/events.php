@@ -29,6 +29,11 @@ class Events extends CI_Controller {
 
 		$this->output->set_output(json_encode($result));
 	}
+	public function deleteEvent($eventid = 0){
+		$this->load->model('eventsModel');
+		$result = $this->eventsModel->deleteEvent($eventid);
+		redirect('events');
+	}
 }
 
 
