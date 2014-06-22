@@ -1,26 +1,16 @@
 
     <!--content -->
     <article id="content">
+    	<?php
+    	if($this->session->userdata('userid') != NULL) {
+    	?>
     	<a href="#" id="btnAddNewCareer">Add New Career</a>
+    	<?php }
+    	?>
         <div class="wrapper careercontent">
         </div>
      <div class="wrapper">
-	<!--<form id="CareerForm" action="#" style="display:none;">
-	<h2>Career Form</h2>
-		<div>
-			<div class="wrapper"> <span>Title:</span>
-				<input type="text" class="input" id="title" placeholder="Input Your Title"/>
-			</div>
-			<div class="textarea_box"> <span>Requirement:</span>
-				<textarea name="textarea" cols="1" rows="1" id="requirement" placeholder="Input Requirement of Job"></textarea>
-			</div>
-			<div class="textarea_box"> <span>Message:</span>
-				<textarea name="textarea" cols="1" rows="1" id="jobcontactus" placeholder="Input Contact"></textarea>
-			</div>
-			<input type="button" class="button" value="Send" id="btnSend"/>
-			<label style="color:red" id="lblError"></label>
-		</div>
-	</form>-->
+     <input type="hidden" value="<?= $this->session->userdata('userid') ?>" id="staffid"/>
 	</div>
     </article>
 
@@ -58,7 +48,6 @@
 	<script type="text/javascript">Cufon.now();</script>
 	<script type="text/javascript">
 	$(document).ready(function () {
-
 		$('li.active').removeClass('active');
 		$("a[href='/nightclub/career']").parent().addClass('active');
 
@@ -91,6 +80,9 @@
 			  	{
 			  		var require = data[i]['Requirement'].replace(/<br>/g, '<br>   ');
 			  		var contact = data[i]['Contact'].replace(/<br>/g, '<br>   ');
+
+			  		if($("#staffid").val() != "")
+			  		{
 			  		$('.careercontent').append(
 					'<div class="wrapper">'+
 			  		'<h2 class="title"><strong>Urgently Needed.</strong> '+data[i]['CareerPosition']+'</h2>'+
@@ -99,6 +91,17 @@
 						'<input type="hidden" id="txtcareerid" value="'+data[i]['CareerID']+'" />'+
 			  		'<a style="cursor:pointer;" class="btnEdit">Edit</a> &nbsp; <a class="btnDelete" href="'+mainDomain+'/career/deleteCareer/'+data[i]['CareerID']+'" style="cursor:pointer;">Delete</a>'+
 					'</div>');
+			  		}
+			  		else{
+					$('.careercontent').append(
+					'<div class="wrapper">'+
+			  		'<h2 class="title"><strong>Urgently Needed.</strong> '+data[i]['CareerPosition']+'</h2>'+
+						'<p class="color1 pad_bot1 requirement">'+ '   '+require+'</p>'+
+						'<p class="pad_bot1 contact">'+ '   '+contact+'</p>'+
+						'<input type="hidden" id="txtcareerid" value="'+data[i]['CareerID']+'" />'+
+			  		'</div>');
+
+			  		}
 			  	}
 			  },
 			 async:false

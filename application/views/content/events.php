@@ -3,6 +3,13 @@
     <article id="content">
         <div class="wrapper">
 			<h2>Club Events</h2>
+			<?php
+	    	if($this->session->userdata('userid') != NULL) {
+	    	?>
+			<a href="#" id="btnAddNewEvent">Add New Event</a>
+			<?php }
+    		?>
+			 <input type="hidden" value="<?= $this->session->userdata('userid') ?>" id="staffid"/>
 			<div class="wrapper eventContent">
 			</div>
         </div>
@@ -60,6 +67,7 @@
 					'</p>'+
 				'</div>');	
 		  		}
+		  		if($("#staffid").val() != "") $('.eventContent').append('<a style="cursor:pointer;" class="btnEdit">Edit</a> &nbsp; <a class="btnDelete" href="'+mainDomain+'/event/deleteEvent/'+data[i]['eventid']+'" style="cursor:pointer;">Delete</a>');
 		  	}
 		  },
 		 async:true
