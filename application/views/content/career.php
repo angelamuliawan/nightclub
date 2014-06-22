@@ -58,6 +58,7 @@
 			$('#title').val("");
 			$('#requirement').val("");
 			$('#jobcontactus').val("");
+			$("#lblError").text("");
 			$(".popupCreateCareer_open").click();
 		});
 		
@@ -117,7 +118,7 @@
 			$('#requirement').val($.trim(requirement));
 			$('#jobcontactus').val($.trim(contact));
 			$('#hdnCareerID').val(careerid);
-
+			$("#lblError").text("");
 			e.preventDefault();
 			$(".popupCreateCareer_open").click();
 
@@ -128,12 +129,17 @@
 				var jobcontactus = $("#jobcontactus").val().replace(/\n/g, '<br>');
 				var careerid = $('#hdnCareerID').val();
 				
+				if(title == "") $("#lblError").text("Job Position must be filled");
+				else if(requirement == "") $("#lblError").text("Requirement must be filled");
+				else if(jobcontactus == "") $("#lblError").text("Contact must be filled");
+				else {
 				var param = {
 					title : title,
 					requirement : requirement,
 					jobcontactus : jobcontactus,
 					careerid : careerid
 				}
+				$("#lblError").text("");
 				$.ajax({
 					type: 'POST',
 					url: mainDomain + '/career/saveCareer',	
@@ -148,6 +154,7 @@
 						else alert("sorry we're unable to save, try again.")
 					}
 				});
+				}
 		});
 	});
 	</script>

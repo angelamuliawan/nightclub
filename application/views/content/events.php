@@ -1,4 +1,9 @@
+<style>
+	.eventss{
+		min-height:450px;
+	}
 
+</style>
     <!--content -->
     <article id="content">
         <div class="wrapper">

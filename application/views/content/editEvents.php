@@ -74,7 +74,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
+			$("#lblError").text("");
 			$('li.active').removeClass('active');
 			$("a[href='/nightclub/events']").parent().addClass('active');
 			var eventid = $("#hdnEventID").val();
@@ -103,7 +103,12 @@
 				var description = $("#txtDescription").val();
 				var place = $("#txtPlace").val();
 				//var imageURL = $("#originalPhotoName").val();
-				
+				if(title == "") $("#lblError").text("Title must be filled");
+				else if(date == "") $("#lblError").text("date must be filled");
+				else if(time == "") $("#lblError").text("time must be filled");
+				else if(description == "") $("#lblError").text("description must be filled");
+				else if(place == "") $("#lblError").text("place must be filled");
+				else {
 				var param = {
 					title : title,
 					date : date,
@@ -123,6 +128,7 @@
 					},
 					async:true
 				});
+				}
 			});	
 			
 		});

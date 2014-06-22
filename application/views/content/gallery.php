@@ -38,7 +38,7 @@
 						</div>
 						<input type="button" class="button" value="Update Albums" id="btnUpdateAlbums" style="margin-top:20px; margin-right:20px;"/>
 					</div>
-					<label style="color:red" id="lblError"></label>
+					<label style="color:red" id="lblError2"></label>
 				</form>
 			</section>
         </div>
@@ -208,12 +208,14 @@
 			$("#btnCreateAlbum").click(function(){
 				var albumname = $("#txtNewAlbumName").val();
 				var albumdescription = $("#txtNewAlbumDescription").val();
-				
+				 $("#lblError").text("");
 				var param = {
 					albumname : albumname,
 					albumdescription : albumdescription
 				}
-				
+				if(albumname == "") $("#lblError").text("Album name must be filled");
+				else if(albumdescription == "") $("#lblError").text("Album description must be filled");
+				else {
 				$.ajax({
 					type: 'POST',
 					url: mainDomain + '/gallery/createAlbums',	
@@ -224,19 +226,22 @@
 						location.href = "gallery";
 					}
 				});
+				}
 			});
 			
 			$("#btnUpdateAlbums").click(function(){
 				var albumid = $("#hdnAlbumID").val();
 				var albumname = $("#txtAlbumName").val();
 				var albumdescription = $("#txtAlbumDescription").val();
-				
+				$("#lblError2").text("");
 				var param = {
 					albumid : albumid,
 					albumname : albumname,
 					albumdescription : albumdescription
 				}
-				
+				if(albumname == "") $("#lblError2").text("Album name must be filled");
+				else if(albumdescription == "") $("#lblError2").text("Album description must be filled");
+				else {
 				$.ajax({
 					type: 'POST',
 					url: mainDomain + '/gallery/updateAlbums',	
@@ -247,6 +252,7 @@
 						location.href = "gallery";
 					}
 				});
+				}
 			});
 			
 			$(".btnDeleteAlbum").click(function(){

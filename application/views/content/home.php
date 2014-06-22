@@ -1,4 +1,8 @@
-
+<style>
+	.upcomevent{
+		min-height: 130px;
+	}
+</style>
     <!--content -->
     <article id="content">
         <div class="wrapper pad_bot1">
@@ -31,7 +35,7 @@
 				  	{
 				  		day = data[i]['Date1'].split(' ');
 				  		$("#gallery1").append(
-							'<ul>'+
+							'<ul class="upcomevent">'+
 								'<li>'+
 									'<span class="dropcap_1">'+day[0]+'<span>'+day[1]+'</span></span>'+
 									'<p><span class="color1">'+data[i]['title']+'</span><br>'+

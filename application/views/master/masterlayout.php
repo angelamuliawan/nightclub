@@ -20,7 +20,7 @@
 		<script src="/nightclub/assets/js/atooltip.jquery.js"></script>
 
 		<script type="text/javascript">
-			var mainDomain= "http://localhost/nightclub";
+			var mainDomain= "http://localhost:2812/nightclub";
 			var serverTime = '<?=date('H:i:s');?>';
 		</script>
 	</head>
