@@ -25,8 +25,8 @@
 	}
 	</script>
 	<style type="text/css">
-		table { border-collapse:collapse; }
-		table td, table th { border:1px solid grey;padding:5px; }
+		table { border-collapse:collapse !important; }
+		table td, table th { border:1px solid grey !important;padding:5px !important; }
 	</style>
 
     <article id="content">
