@@ -37,8 +37,8 @@
 			 async:true
 		});
 		
-		$('body').on('click', '.btnEdit', function(){
-			alert("aa");
-		})
+		$('.btnEdit').click(function(){
+			alert('asdf');
+		});
 	});
 	</script>
