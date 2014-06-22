@@ -29,6 +29,19 @@ class Career extends CI_Controller {
 		$result = $this->careerModel->getCareer();
 		$this->output->set_output(json_encode($result));
 	}
+	public function deleteCareer($careerid = 0){
+		$this->load->model('careerModel');
+		$result = $this->careerModel->deleteCareer($careerid);
+		redirect('career');
+	}
+	public function saveCareer()
+	{
+		$this->load->model('careerModel');
+		$data = $this->input->post();		
+		if($data['careerid'] == "") $result = $this->careerModel->insertCareer($data['title'], $data['requirement'], $data['jobcontactus'], $data['careerid'], $this->session->userdata('userid'));
+		else $result = $this->careerModel->editCareer($data['title'], $data['requirement'], $data['jobcontactus'], $data['careerid'], $this->session->userdata('userid'));
+		$this->output->set_output(json_encode($result));
+	}
 }
 
 
