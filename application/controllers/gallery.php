@@ -59,6 +59,13 @@ class Gallery extends CI_Controller {
 
 		$this->output->set_output(json_encode($result));
 	}
+	
+	public function deleteImage(){
+		$this->load->model('galleryModel');
+		$result = $this->galleryModel->deleteImage();
+
+		$this->output->set_output(json_encode($result));
+	}
 }
 
 

@@ -28,13 +28,12 @@
 	<script src="/nightclub/assets/js/popup/jquery-1.7.2.min.js"></script>
 	<script src="/nightclub/assets/js/popup/jquery.popupoverlay.js"></script>
 	<div style="display:none;">
-		<button class="fall_open">Callback events</button>
-		<button class="popupCreateCareer">Callback events</button>
+		<button class="popupCreateCareer_open">Callback events</button>
 	</div>
 	
 	<!-- Popup Edit OR CREATE career -->
-	<div id="fall" class="well" style="height:300px; width:500px; margin-left:auto; margin-right:auto; display:none;">
-		<h2 style="text-align:center;">Edit Career</h2>
+	<div id="popupCreateCareer" class="well" style="height:600px; width:500px; margin-left:auto; margin-right:auto; display:none;">
+		<h2 style="text-align:center;">Add Career</h2>
 		<div class="wrapper pad_bot1">
 			<section class="col1">
 				<input type="hidden" id="hdnCareerID" value="" />
@@ -63,15 +62,17 @@
 		$('li.active').removeClass('active');
 		$("a[href='/nightclub/career']").parent().addClass('active');
 
-		$("#btnAddNewCareer").click(function(e){
-				e.preventDefault();
-				$(".popupCreateCareer").click();
-			});
 		
-		$('#fall').popup({
-				opacity: 0.9,
-				transition: 'all 0.7s'
-			});
+		$("#btnAddNewCareer").click(function(e){
+			e.preventDefault();
+			$(".popupCreateCareer_open").click();
+		});
+		
+		$('#popupCreateCareer').popup({
+			opacity: 0.9,
+			transition: 'all 0.7s'
+		});
+		
 
 		$.ajax({
 			  type: 'POST',

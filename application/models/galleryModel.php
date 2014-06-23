@@ -80,4 +80,16 @@ class GalleryModel extends CI_Model {
 		else
 		  	return 0;
 	}
+	
+	function deleteImage()
+	{
+		$data = $this->input->post();
+		$imageid = $data['imageid'];
+		
+		$query = $this->db->query("DELETE FROM Photo WHERE PhotoID = $imageid");
+		if($this->db->affected_rows()>0)
+			return $query->result_array();
+		else
+		  	return 0;
+	}
 }
