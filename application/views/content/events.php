@@ -22,7 +22,12 @@
 
 		$('li.active').removeClass('active');
 		$("a[href='/nightclub/events']").parent().addClass('active');
-
+		
+		$("#btnAddNewEvent").click(function(e){
+			
+			e.preventDefault();
+			location.href = "addevents";
+		});
 	});
 
 	$.ajax({
@@ -40,7 +45,7 @@
 		  		$('.eventContent').append('<div class="cols eventss" id="'+data[i]['eventid']+'">'+
 		  		'<h4>'+data[i]['title']+'</h4>'+
 					'<figure class="pad_bot1">'+
-						'<img src="/nightclub/assets/images/event/'+data[i]['ImageURL']+'" alt="">'+
+						'<img src="/nightclub/assets/images/event/'+data[i]['ImageURL']+'" style="width:260px; height:165px;" alt="">'+
 					'</figure>'+
 					'<p class="pad_bot2">'+
 						'<span class="color2">'+
@@ -56,7 +61,7 @@
 				$('.eventContent').append('<div class="cols marg_right1 eventss" id="'+data[i]['eventid']+'">'+
 		  		'<h4>'+data[i]['title']+'</h4>'+
 					'<figure class="pad_bot1">'+
-						'<img src="/nightclub/assets/images/event/'+data[i]['ImageURL']+'" alt="">'+
+						'<img src="/nightclub/assets/images/event/'+data[i]['ImageURL']+'" style="width:260px; height:165px;" alt="">'+
 					'</figure>'+
 					'<p class="pad_bot2">'+
 						'<span class="color2">'+
@@ -67,7 +72,7 @@
 					'</p>'+
 				'</div>');	
 		  		}
-		  		if($("#staffid").val() != "") $('.eventss:last').append('<a style="cursor:pointer;" class="btnEdit">Edit</a> &nbsp; <a class="btnDelete" href="'+mainDomain+'/events/deleteEvent/'+data[i]['eventid']+'" style="cursor:pointer;">Delete</a>');
+		  		if($("#staffid").val() != "") $('.eventss:last').append('<a style="cursor:pointer;" href="'+mainDomain+'/editevents/index/'+data[i]['eventid']+'" class="btnEdit">Edit</a> &nbsp; <a class="btnDelete" href="'+mainDomain+'/events/deleteEvent/'+data[i]['eventid']+'" style="cursor:pointer;">Delete</a>');
 		  	}
 		  },
 		 async:true
