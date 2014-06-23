@@ -7,7 +7,52 @@
 			<h2>Images</h2>
 			<dl class="folio">
 				<dd id="photoContent">
-					
+					<div class="single_box">
+						<span class="single">
+							<a href="/nightclub/assets/images/gallery/gallery_big_img1.jpg" title="Caption">
+							<img src="/nightclub/assets/images/gallery/gallery_big_img1.jpg" width="200" height="139" /></a>
+						</span>
+						<span style="float:right;">
+							<a class=""  href="#">Edit</a> | <a class=""  href="#">Delete</a><br/>
+						</span>
+					</div>
+					<div class="single_box">
+						<span class="single">
+							<a href="/nightclub/assets/images/gallery/gallery_big_img1.jpg" title="Caption">
+							<img src="/nightclub/assets/images/gallery/gallery_big_img1.jpg" width="200" height="139" /></a>
+						</span>
+						<span style="float:right;">
+							<a class=""  href="#">Edit</a> | <a class=""  href="#">Delete</a>
+						</span>
+					</div>
+					<div class="single_box">
+						<span class="single">
+							<a href="/nightclub/assets/images/gallery/gallery_big_img1.jpg" title="Caption">
+							<img src="/nightclub/assets/images/gallery/gallery_big_img1.jpg" width="200" height="139" /></a>
+						</span>
+						<span style="float:right;">
+							<a class=""  href="#">Edit</a> | <a class=""  href="#">Delete</a>
+						</span>
+					</div>
+					<div class="single_box">
+						<span class="single">
+							<a href="/nightclub/assets/images/gallery/gallery_big_img1.jpg" title="Caption">
+							<img src="/nightclub/assets/images/gallery/gallery_big_img1.jpg" width="200" height="139" /></a>
+						</span>
+						<span style="float:right;">
+							<a class=""  href="#">Edit</a> | <a class=""  href="#">Delete</a>
+						</span>
+					</div>
+					<div class="single_box">
+						<span class="single">
+							<a href="/nightclub/assets/images/gallery/gallery_big_img1.jpg" title="Caption">
+							<img src="/nightclub/assets/images/gallery/gallery_big_img1.jpg" width="200" height="139" /></a>
+						</span>
+						<span style="float:right;">
+							<a class=""  href="#">Edit</a> | <a class=""  href="#">Delete</a>
+						</span>
+						sadfasdfasdfasdfasdfasdfkasjdkfj;ksjfjdsf
+					</div>
 				</dd>
 			</dl>
         </div>
@@ -32,37 +77,37 @@
 			var isLoggedIn = $("#hdnIsLoggedIn").val();
 			var control = '';
 			
-			$.ajax({
-				type: 'POST',
-				url: mainDomain + '/galleryphoto/getImage',	
-				data: { albumid : albumid },
-				success: function(data)
-				{
-					//console.log(data);
-					var data = JSON.parse(data);
-					if(!data.length){
-						$('#photoContent').append('<h4>Sorry, this album didn\'t contains any photos yet.</h4>');
-					}else{
-						for(var i = 0; i<data.length; i++)
-						{
-							if(isLoggedIn){
-								control = '<span style="float:right; margin-right:50px;"><a class="btnEditAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Edit</a> | <a class="btnDeleteAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Delete</a></span>';
-							}
-							$('#photoContent').append('<div class="single_box">'+
-								'<span class="single">'+
-									'<a href="/nightclub/assets/images/'+data[i]['PhotoURL']+'" title="'+data[i]['PhotoDescription']+'">'+
-									'<img src="/nightclub/assets/images/'+data[i]['PhotoURL']+'" width="200" height="139" /></a>'+
-									'<br><br>'+
-										control +
-										'<br>'+
-										data[i]['PhotoDescription']+
-								'</span>'+
-							'</div>');
-						}
-					}	
-				},
-				async:false
-			});
+			// $.ajax({
+				// type: 'POST',
+				// url: mainDomain + '/galleryphoto/getImage',	
+				// data: { albumid : albumid },
+				// success: function(data)
+				// {
+					// //console.log(data);
+					// var data = JSON.parse(data);
+					// if(!data.length){
+						// $('#photoContent').append('<h4>Sorry, this album didn\'t contains any photos yet.</h4>');
+					// }else{
+						// for(var i = 0; i<data.length; i++)
+						// {
+							// if(isLoggedIn){
+								// control = '<span style="float:right; margin-right:50px;"><a class="btnEditAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Edit</a> | <a class="btnDeleteAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Delete</a></span>';
+							// }
+							// $('#photoContent').append('<div class="single_box">'+
+								// '<span class="single">'+
+									// '<a href="/nightclub/assets/images/'+data[i]['PhotoURL']+'" title="'+data[i]['PhotoDescription']+'">'+
+									// '<img src="/nightclub/assets/images/'+data[i]['PhotoURL']+'" width="200" height="139" /></a>'+
+									// '<br><br>'+
+										// control +
+										// '<br>'+
+										// data[i]['PhotoDescription']+
+								// '</span>'+
+							// '</div>');
+						// }
+					// }	
+				// },
+				// async:false
+			// });
 			$('.thumbs').piroBox({
 					border: 10,
 					borderColor : '#222', 
