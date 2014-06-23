@@ -39,4 +39,45 @@ class GalleryModel extends CI_Model {
 		else
 		  	return 0;
 	}
+	
+	function deleteAlbums()
+	{
+		$data = $this->input->post();
+		$albumid = $data['albumid'];
+		
+		$query = $this->db->query("DELETE FROM Album WHERE AlbumID = $albumid");
+		if($this->db->affected_rows()>0)
+			return $query->result_array();
+		else
+		  	return 0;
+	}
+	
+	function createAlbums()
+	{
+		$data = $this->input->post();
+		$albumname = $data['albumname'];
+		$albumdescription = $data['albumdescription'];
+		$staffID = $this->session->userdata('userid');
+		
+		$query = $this->db->query("INSERT INTO album (albumname, albumdescription, datetaken, staffid) VALUES('{$albumname}','{$albumdescription}',CURDATE(),'{$staffID}') ");
+
+		if($this->db->affected_rows()>0)
+			return 1;
+		else
+		  	return 0;
+	}
+	
+	function updateAlbums()
+	{
+		$data = $this->input->post();
+		$albumid = $data['albumid'];
+		$albumname = $data['albumname'];
+		$albumdescription = $data['albumdescription'];
+		
+		$query = $this->db->query("UPDATE Album SET AlbumName = '$albumname', AlbumDescription = '$albumdescription' WHERE AlbumID = $albumid");
+		if($this->db->affected_rows()>0)
+			return $query->result_array();
+		else
+		  	return 0;
+	}
 }

@@ -38,6 +38,27 @@ class Gallery extends CI_Controller {
 
 		$this->output->set_output(json_encode($result));
 	}
+	
+	public function deleteAlbums(){
+		$this->load->model('galleryModel');
+		$result = $this->galleryModel->deleteAlbums();
+
+		$this->output->set_output(json_encode($result));
+	}
+	
+	public function createAlbums(){
+		$this->load->model('galleryModel');
+		$result = $this->galleryModel->createAlbums();
+
+		$this->output->set_output(json_encode($result));
+	}
+	
+	public function updateAlbums(){
+		$this->load->model('galleryModel');
+		$result = $this->galleryModel->updateAlbums();
+
+		$this->output->set_output(json_encode($result));
+	}
 }
 
 

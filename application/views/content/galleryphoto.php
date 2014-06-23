@@ -1,4 +1,6 @@
 
+	<input type="hidden" id="hdnIsLoggedIn" value="<?php if($this->session->userdata('userid') != NULL) echo "notloggedin";?>" />
+
     <!--content -->
     <article id="content">
         <div class="wrapper gallery_in">
@@ -27,6 +29,9 @@
 			Cufon.now();
 			
 			var albumid = $("#hdnAlbumID").val();
+			var isLoggedIn = $("#hdnIsLoggedIn").val();
+			var control = '';
+			
 			$.ajax({
 				type: 'POST',
 				url: mainDomain + '/galleryphoto/getImage',	
@@ -40,10 +45,17 @@
 					}else{
 						for(var i = 0; i<data.length; i++)
 						{
+							if(isLoggedIn){
+								control = '<span style="float:right; margin-right:50px;"><a class="btnEditAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Edit</a> | <a class="btnDeleteAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Delete</a></span>';
+							}
 							$('#photoContent').append('<div class="single_box">'+
 								'<span class="single">'+
 									'<a href="/nightclub/assets/images/'+data[i]['PhotoURL']+'" title="'+data[i]['PhotoDescription']+'">'+
 									'<img src="/nightclub/assets/images/'+data[i]['PhotoURL']+'" width="200" height="139" /></a>'+
+									'<br><br>'+
+										control +
+										'<br>'+
+										data[i]['PhotoDescription']+
 								'</span>'+
 							'</div>');
 						}
