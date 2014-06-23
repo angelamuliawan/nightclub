@@ -482,3 +482,27 @@ footer a:hover {
 	color:.474747;
 	font:14px Arial, Helvetica, sans-serif;
 }
+
+.form #fine-uploader-basic {
+	margin-right:5px;
+	font-size:25px;
+	color:.7532a9;
+	text-decoration:none;
+	letter-spacing:-2px;
+	padding:0 13px;
+	line-height:26px;
+	height:31px;
+	background:.fff;
+	box-shadow: 0 0 6px rgba(256, 256, 256, .5);
+	-moz-box-shadow: 0 0 6px rgba(256, 256, 256, .5);
+	-webkit-box-shadow:  0 0 6px rgba(256, 256, 256, .5);
+	position: relative;
+	margin-bottom:5px;
+}
+.form #fine-uploader-basic:hover {
+	background: url(../images/menu_active.gif) top repeat-x;
+	color:.fff;
+	box-shadow: 0 0 6px rgba(152, 103, 190, .5);
+	-moz-box-shadow: 0 0 6px rgba(152, 103, 190, .5);
+	-webkit-box-shadow:  0 0 6px rgba(152, 103, 190, .5)
+}

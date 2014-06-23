@@ -81,6 +81,46 @@ class GalleryModel extends CI_Model {
 		  	return 0;
 	}
 	
+	function getImagebyID()
+	{
+		$data = $this->input->post();
+		$imageid = $data['imageid'];
+		
+		$query = $this->db->query("SELECT PhotoURL, PhotoDescription FROM Photo WHERE PhotoID = $imageid");
+		if($this->db->affected_rows()>0)
+			return $query->result_array();
+		else
+		  	return 0;
+	}
+	
+	function addNewImage(){
+		$data = $this->input->post();
+		$imagename = $data['imagename'];
+		$imagedescription = $data['imagedescription'];
+		$albumid = $data['albumid'];
+		$staffID = $this->session->userdata('userid');
+		
+		$query = $this->db->query("INSERT INTO photo (PhotoURL, PhotoDescription, albumid, staffid) VALUES('{$imagename}','{$imagedescription}','{$albumid}','{$staffID}') ");
+
+		if($this->db->affected_rows()>0)
+			return 1;
+		else
+		  	return 0;
+	}
+	
+	function updateImage()
+	{
+		$data = $this->input->post();
+		$imageid = $data['imageid'];
+		$imagedescription = $data['imagedescription'];
+		
+		$query = $this->db->query("UPDATE Photo SET PhotoDescription = '$imagedescription' WHERE PhotoID = $imageid");
+		if($this->db->affected_rows()>0)
+			return $query->result_array();
+		else
+		  	return 0;
+	}
+	
 	function deleteImage()
 	{
 		$data = $this->input->post();

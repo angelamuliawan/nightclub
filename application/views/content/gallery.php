@@ -5,9 +5,9 @@
     <article id="content">
         <div class="wrapper gallery_in">
 			<h2>Albums</h2>
-			<?php if($this->session->userdata('userid') != NULL) ?>
+			<?php if($this->session->userdata('userid') != NULL) { ?>
 				<a class="btnAddAlbum" href="#">Create new album</a><br/><br/>
-			<?php?>
+			<?php } ?>
 			<div class="wrapper galleryContent">
 			</div>
         </div>

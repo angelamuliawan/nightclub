@@ -1,10 +1,15 @@
 
-	<input type="hidden" id="hdnIsLoggedIn" value="<?php if($this->session->userdata('userid') != NULL) echo "notloggedin";?>" />
+	<input type="hidden" id="hdnIsLoggedIn" value="<?php if($this->session->userdata('userid') != NULL) echo "loggedin";?>" />
 
     <!--content -->
     <article id="content">
         <div class="wrapper gallery_in">
 			<h2>Images</h2>
+			<?php if($this->session->userdata('userid') != NULL) { ?>
+				<a class="btnAddImage" href="#">Add new image</a><br/><br/>
+			<?php
+			}
+			?>
 			<dl class="folio">
 				<dd id="photoContent">
 				</dd>
@@ -13,53 +18,6 @@
     </article>
     <!--content end-->
 	
-	<!-- jQuery Popup Overlay -->
-	<script src="/nightclub/assets/js/popup/jquery-1.7.2.min.js"></script>
-	<script src="/nightclub/assets/js/popup/jquery.popupoverlay.js"></script>
-	<div style="display:none;">
-		<button class="popupEditImage_open">Callback events</button>
-		<button class="popupCreateImage_open">Callback events</button>
-	</div>
-	
-	<!-- Popup Edit album -->
-	<div id="popupEditImage" class="well" style="height:300px; width:500px; margin-left:auto; margin-right:auto; display:none;">
-		<h2 style="text-align:center;">Edit Image</h2>
-		<div class="wrapper pad_bot1">
-			<section class="col1">
-				<input type="hidden" id="hdnImageID" value="" />
-				<form class="form" action="#" style="margin-left:60px;">
-					<div style="width:400px; height:200px; margin-left:auto; margin-right:auto;">
-						<div class="wrapper"> <span>Image Description:</span>
-							<input type="text" class="input"  id="txtImageDescription" placeholder="Input album description"/>
-						</div>
-						<input type="button" class="button" value="Update Albums" id="btnUpdateAlbums" style="margin-top:20px; margin-right:20px;"/>
-					</div>
-					<label style="color:red" id="lblError"></label>
-				</form>
-			</section>
-        </div>
-	</div>
-	
-	<!-- Popup create album -->
-	<div id="popupCreateImage" class="well" style="height:300px; width:500px; margin-left:auto; margin-right:auto; display:none;">
-		<h2 style="text-align:center;">Create Album</h2>
-		<div class="wrapper pad_bot1">
-			<section class="col1">
-				<form class="form" action="#" style="margin-left:60px;">
-					<div style="width:400px; height:200px; margin-left:auto; margin-right:auto;">
-						<div class="wrapper"><span>Album Name:</span>
-							<input type="text" class="input" id="txtNewAlbumName" placeholder="Input album Name"/>
-						</div>
-						<div class="wrapper"> <span>Album Description:</span>
-							<input type="text" class="input"  id="txtNewAlbumDescription" placeholder="Input album description"/>
-						</div>
-						<input type="button" class="button" value="Create Albums" id="btnCreateAlbum" style="margin-top:20px; margin-right:20px;"/>
-					</div>
-					<label style="color:red" id="lblError"></label>
-				</form>
-			</section>
-        </div>
-	</div>
 	
 	<!-- albumid -->
 	<input type="hidden" id="hdnAlbumID" value="<?php echo $param; ?>" />
@@ -93,7 +51,7 @@
 						for(var i = 0; i<data.length; i++)
 						{
 							if(isLoggedIn){
-								control = '<span style="float:right; margin-right:50px;"><a class="btnEditAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Edit</a> | <a class="btnDeleteAlbum" data-id="'+data[i]['PhotoID']+'" href="#">Delete</a></span>';
+								control = '<a class="btnEditImage" data-id="'+data[i]['PhotoID']+'" href="#">Edit</a> | <a class="btnDeleteImage" data-id="'+data[i]['PhotoID']+'"  href="#">Delete</a><br/>';
 							}
 							$('#photoContent').append('<div class="single_box">'+
 								'<div class="single_box">'+
@@ -102,7 +60,7 @@
 										'<img src="/nightclub/assets/images/gallery/'+data[i]['PhotoURL']+'" width="200" height="139" /></a>'+
 									'</span>'+
 									'<span style="float:right;">'+
-										'<a class="btnEditImage" data-id="'+data[i]['PhotoID']+'" href="#">Edit</a> | <a class="btnDeleteImage" data-id="'+data[i]['PhotoID']+'"  href="#">Delete</a><br/>'+
+										control +
 									'</span>'+
 								'</div>'+
 							'</div>');
@@ -110,25 +68,6 @@
 					}	
 				},
 				async:false
-			});
-			
-			$(".btnDeleteImage").click(function(){
-				
-				var imageid = $(this).attr('data-id');
-				var conf = confirm("Delete this image ?");
-				if(conf){
-					$.ajax({
-						type: 'POST',
-						url: mainDomain + '/gallery/deleteImage',	
-						data: {imageid : imageid},
-						success: function(data)
-						{
-							alert("Image successfully deleted.");
-							location.reload();
-						},
-						async:true
-					});
-				}
 			});
 			
 			$('.thumbs').piroBox({
@@ -158,6 +97,37 @@
 					single : '.single  a',
 					next_class : '.next',
 					previous_class : '.previous'
-			});	
+			});
+			
+			$(".btnAddImage").click(function(e){
+				e.preventDefault();
+				location.href = "../../galleryAddPhoto/index/" + albumid;
+			});
+			
+			$(".btnEditImage").click(function(e){
+				e.preventDefault();
+				var imageid = $(this).attr('data-id');
+				location.href = "../../galleryEditPhoto/index/" + imageid;
+			});
+			
+			$(".btnDeleteImage").click(function(){
+				var imageid = $(this).attr('data-id');
+				var conf = confirm("Delete this image ?");
+				if(conf){
+					$.ajax({
+						type: 'POST',
+						url: mainDomain + '/gallery/deleteImage',	
+						data: {imageid : imageid},
+						success: function(data)
+						{
+							alert("Image successfully deleted.");
+							location.reload();
+						},
+						async:true
+					});
+				}
+			});
+			
+			
 		});
 	</script>
