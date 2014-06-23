@@ -15,10 +15,10 @@
 	<script type="text/javascript" src="/nightclub/assets/js/calendar/jquery.datePicker.js"></script>
 	
 	<!-- datePicker required styles -->
-	<link rel="stylesheet" type="text/css" media="screen" href="/nightclub/assets/js/calendar/datePicker.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="/nightclub/assets/css/calendar/datePicker.css">
 	
 	<!-- page specific styles -->
-	<link rel="stylesheet" type="text/css" media="screen" href="/nightclub/assets/js/calendar/demo.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="/nightclub/assets/css/calendar/demo.css">
 	
 	 <!-- page specific scripts -->
 	<script type="text/javascript" charset="utf-8">
